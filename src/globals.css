@@ -1,4 +1,43 @@
 @import "tailwindcss";
 
 :root {
+	/* Typography */
+
+	--font-type: Commissioner;
+
+	/* Colours */
+
+	--color-primary: hsl(253, 81%, 56%);
+	--color-stroke: hsl(0, 0%, 87%);
+	--color-background-one: hsl(0, 0%, 100%);
+	--color-background-two: hsl(0, 0%, 98%);
+	--color-gray-one: hsla(332, 58%, 6%, 0.85);
+	--color-gray-two: hsla(332, 58%, 6%, 0.65);
+	--color-gray-three: hsla(332, 58%, 6%, 0.4);
+	--color-status-success: hsl(96, 63%, 48%);
+	--color-status-error: hsl(0, 97%, 61%);
+	--color-status-info: hsl(213, 100%, 56%);
+}
+
+@theme {
+	/* Typography */
+
+	--font-family: var(--font-type);
+
+	/* Colours */
+
+	--color-primary: var(--color-primary);
+	--color-stroke: var(--color-stroke);
+	--color-background-one: var(--color-background-one);
+	--color-background-two: var(--color-background-two);
+	--color-gray-one: var(--color-gray-one);
+	--color-gray-two: var(--color-gray-two);
+	--color-gray-three: var(--color-gray-three);
+	--color-status-success: var(--color-status-success);
+	--color-status-error: var(--color-status-error);
+	--color-status-info: var(--color-status-info);
+}
+
+body {
+	font-family: var(--font-type);
 }
