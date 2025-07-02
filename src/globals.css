@@ -18,6 +18,10 @@
 	--color-status-success: hsl(96, 63%, 48%);
 	--color-status-error: hsl(0, 97%, 61%);
 	--color-status-info: hsl(213, 100%, 56%);
+
+	/* Shadow */
+
+	--shadow-md: 0px 17px 46px hsla(212, 8%, 38%, 0.08);
 }
 
 @theme {
@@ -37,6 +41,9 @@
 	--color-status-success: var(--color-status-success);
 	--color-status-error: var(--color-status-error);
 	--color-status-info: var(--color-status-info);
+
+	/* Shadow */
+	--shadow-md: var(--shadow-md);
 }
 
 body {

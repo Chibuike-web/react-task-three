@@ -9,6 +9,8 @@ import {
 	IconSuccess,
 } from "../assets/Icons";
 import { useFormUtils } from "../Hooks";
+import Checkbox from "../components/Checkbox";
+import { visualStroke } from "../utils";
 
 export default function Register() {
 	const {
@@ -41,9 +43,11 @@ export default function Register() {
 			textClass = "text-status-success";
 		}
 	}
+
 	return (
-		<main className="bg-background-two grid place-items-center h-screen">
-			<section className="flex flex-col max-w-[502px] w-full bg-background-one rounded-[24px] px-[44px] pt-4 pb-6">
+		<main className="bg-background-two grid place-items-center h-screen px-6 md:px-0">
+			<section className="flex flex-col max-w-[502px] w-full bg-background-one rounded-[24px] px-6 md:px-[44px] pt-8 pb-10 shadow-md">
+				{/* Email Address */}
 				<div className="flex items-center justify-between w-full">
 					<div className="flex gap-4 items-center">
 						<Link to="/" className="h-[56px] relative flex items-center text-gray-one">
@@ -64,9 +68,11 @@ export default function Register() {
 					<form onSubmit={handleSubmit(onSubmit)} className="w-full">
 						<div>
 							<div
-								className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full ${
-									input === "email" ? "border border-primary" : "border-stroke"
-								}`}
+								className={`h-[56px] px-4 rounded-[12px] border flex items-center w-full ${visualStroke(
+									input,
+									"email",
+									errors.email
+								)}`}
 							>
 								<fieldset className="flex flex-col w-full">
 									{(input === "email" || watchedEmail) && (
@@ -85,10 +91,10 @@ export default function Register() {
 												message: "Invalid email address",
 											},
 										})}
-										className="focus:border-0 focus:outline-0 text-[15px] text-gray-one placeholder:text-[15px] placeholder:text-gray-two"
+										className="focus:border-0 focus:outline-0 text-[15px] text-gray-one placeholder:text-[15px] placeholder:text-gray-two w-full"
 										placeholder="Email address"
 										onFocus={(e) => handleFocus(e.target.id)}
-										onBlur={(e) => handleBlur(e.target.id)}
+										onBlur={handleBlur}
 									/>
 								</fieldset>
 								{watchedEmail && watchedEmail?.match(/^\S+@\S+$/i) && (
@@ -101,9 +107,11 @@ export default function Register() {
 						</div>
 						<div className="mt-[20px]">
 							<div
-								className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full ${
-									input === "password" ? "border-[2px] border-primary" : "border-stroke"
-								} `}
+								className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full ${visualStroke(
+									input,
+									"password",
+									errors.password
+								)}`}
 							>
 								<fieldset className="flex flex-col w-full">
 									{(input === "password" || watchedPassword) && (
@@ -122,10 +130,10 @@ export default function Register() {
 												message: "Password must have at least 8 characters",
 											},
 										})}
-										className="focus:border-0 focus:bg-transparent focus:outline-0 text-[15px] text-gray-one placeholder:text-[15px] placeholder:text-gray-two"
+										className="focus:border-0 focus:bg-transparent focus:outline-0 text-[15px] text-gray-one placeholder:text-[15px] placeholder:text-gray-two w-full"
 										placeholder="Password"
 										onFocus={(e) => handleFocus(e.target.id)}
-										onBlur={(e) => handleBlur(e.target.id)}
+										onBlur={handleBlur}
 									/>
 								</fieldset>
 								{watchedPassword && passwordLength >= 8 && (
@@ -149,26 +157,11 @@ export default function Register() {
 							>
 								Create account
 							</button>
-
-							<label htmlFor="checkbox" className="relative mt-4 block">
-								<input
-									type="checkbox"
-									name="checkbox"
-									id="checkbox"
-									className="absolute opacity-0 w-0 h-0"
-									{...register("checkbox", { required: false })}
-								/>
-								<div className=" flex items-center gap-2">
-									<span
-										className={`flex items-center size-4 rounded-[4px] ${
-											watchedCheckbox ? "bg-primary" : " bg-[#ef498f]/12 "
-										}`}
-									>
-										{watchedCheckbox && <IconSuccess className="text-white" fillOpacity={1} />}
-									</span>{" "}
-									<span className="text-gray-one text-[13px]">Send me news and promotion</span>
-								</div>
-							</label>
+							<Checkbox
+								register={register}
+								text="Send me news and promotion"
+								watchedCheckbox={watchedCheckbox}
+							/>
 						</div>
 					</form>
 				</div>
