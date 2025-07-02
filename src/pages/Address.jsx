@@ -107,6 +107,10 @@ const AddManually = () => {
 
 	const { input, handleFocus, handleBlur } = useFormUtils();
 
+	const onSubmit = (data) => {
+		console.log(data);
+	};
+
 	const watchedStreetAddress = watch("streetAddress");
 	const watchedCity = watch("city");
 	const watchedState = watch("state");
@@ -122,13 +126,12 @@ const AddManually = () => {
 					</div>
 					<IconRemove />
 				</div>
-				<form action="">
+				<form onSubmit={handleSubmit(onSubmit)}>
 					{/* Street Address */}
 					<div className="mb-[20px]">
 						<div
 							className={`h-[56px] px-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-								input,
-								"streetAddress",
+								input === "streetAddress",
 								errors.streetAddress
 							)}`}
 						>
@@ -163,8 +166,7 @@ const AddManually = () => {
 					<div className="mb-[20px]">
 						<div
 							className={`h-[56px] px-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-								input,
-								"apartment",
+								input === "apartment",
 								errors.apartment
 							)}`}
 						>
@@ -192,8 +194,7 @@ const AddManually = () => {
 					<div className="mb-[20px]">
 						<div
 							className={`h-[56px] px-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-								input,
-								"city",
+								input === "city",
 								errors.city
 							)}`}
 						>
@@ -227,8 +228,7 @@ const AddManually = () => {
 						<div className="w-full">
 							<div
 								className={`h-[56px] px-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-									input,
-									"state",
+									input === "state",
 									errors.state
 								)}`}
 							>
@@ -261,8 +261,7 @@ const AddManually = () => {
 						<div className="w-full">
 							<div
 								className={`h-[56px] px-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-									input,
-									"zipCode",
+									input === "zipCode",
 									errors.zipCode
 								)}`}
 							>

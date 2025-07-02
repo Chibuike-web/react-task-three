@@ -42,12 +42,12 @@ export default function PersonalInfo() {
 				</div>
 
 				<form onSubmit={handleSubmit(onSubmit)} className="w-full">
-					{/* First name */}
+					{/* Full name */}
 					<div className=" mb-[20px]">
 						<div
 							className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-								input,
-								"name"
+								input === "name",
+								errors.name
 							)}`}
 						>
 							<fieldset className="flex flex-col w-full">
@@ -158,8 +158,8 @@ export default function PersonalInfo() {
 							</div>
 							<div
 								className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-									input,
-									"phoneNumber"
+									input === "phoneNumber",
+									errors.phoneNumber
 								)}`}
 							>
 								<fieldset className="flex flex-col w-full">
@@ -191,9 +191,9 @@ export default function PersonalInfo() {
 
 					{/* Birthday */}
 					<div
-						className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full mb-[4px] ${
-							input === "birthday" ? "border-[2px] border-primary" : "border-stroke"
-						}`}
+						className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full mb-[4px] ${visualStroke(
+							input === "birthday"
+						)}`}
 					>
 						<fieldset className="flex flex-col w-full">
 							{(input === "birthday" || watchedBirthday) && (

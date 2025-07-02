@@ -47,14 +47,13 @@ export default function Register() {
 	return (
 		<main className="bg-background-two grid place-items-center h-screen px-6 md:px-0">
 			<section className="flex flex-col max-w-[502px] w-full bg-background-one rounded-[24px] px-6 md:px-[44px] pt-8 pb-10 shadow-md">
-				{/* Email Address */}
 				<div className="flex items-center justify-between w-full">
 					<div className="flex gap-4 items-center">
 						<Link to="/" className="h-[56px] relative flex items-center text-gray-one">
 							Register{" "}
 							<span className="block h-[2px] absolute bottom-0 right-0 left-0 bg-[#ef498f]" />
 						</Link>
-						<Link to="/" className="h-[56px] relative flex items-center text-gray-two">
+						<Link to="/login" className="h-[56px] relative flex items-center text-gray-two">
 							Login
 						</Link>
 					</div>
@@ -66,11 +65,11 @@ export default function Register() {
 				<div>
 					<p className="text-gray-three text-[13px] mb-[20px]">or register with email</p>
 					<form onSubmit={handleSubmit(onSubmit)} className="w-full">
+						{/* Email Address */}
 						<div>
 							<div
 								className={`h-[56px] px-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-									input,
-									"email",
+									input === "email",
 									errors.email
 								)}`}
 							>
@@ -105,11 +104,11 @@ export default function Register() {
 								<p className="text-[13px] mt-[2px] text-status-error">{errors.email.message}</p>
 							)}
 						</div>
+						{/* Password */}
 						<div className="mt-[20px]">
 							<div
-								className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full ${visualStroke(
-									input,
-									"password",
+								className={`h-[56px] px-4 rounded-[12px] border flex items-center w-full ${visualStroke(
+									input === "password",
 									errors.password
 								)}`}
 							>
