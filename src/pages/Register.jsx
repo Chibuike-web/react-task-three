@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { useForm } from "react-hook-form";
 import {
 	AppleIcon,
 	FacebookIcon,
@@ -7,24 +8,9 @@ import {
 	IconRemove,
 	IconSuccess,
 } from "../assets/Icons";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFormUtils } from "../Hooks";
 
 export default function Register() {
-	const [input, setInput] = useState("");
-	const [isShowPassword, setIsShowPassword] = useState(false);
-	const handleFocus = (id) => {
-		setInput(id);
-	};
-
-	const handleBlur = () => {
-		setInput("");
-	};
-
-	const handleShowPassword = () => {
-		setIsShowPassword((prev) => !prev);
-	};
-
 	const {
 		register,
 		reset,
@@ -32,6 +18,8 @@ export default function Register() {
 		watch,
 		formState: { errors, isSubmitting },
 	} = useForm();
+
+	const { input, isShowPassword, handleFocus, handleBlur, handleShowPassword } = useFormUtils();
 
 	const onSubmit = async (data) => {
 		console.log(data);
@@ -78,7 +66,7 @@ export default function Register() {
 							<div
 								className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full ${
 									input === "email" ? "border border-primary" : "border-stroke"
-								} w-full`}
+								}`}
 							>
 								<fieldset className="flex flex-col w-full">
 									{(input === "email" || watchedEmail) && (
@@ -115,7 +103,7 @@ export default function Register() {
 							<div
 								className={`h-[56px] p-4 rounded-[12px] border flex items-center w-full ${
 									input === "password" ? "border-[2px] border-primary" : "border-stroke"
-								} w-full`}
+								} `}
 							>
 								<fieldset className="flex flex-col w-full">
 									{(input === "password" || watchedPassword) && (
