@@ -1,16 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useFormUtils } from "../Hooks";
 import { Link } from "react-router";
-import {
-	AppleIcon,
-	FacebookIcon,
-	GoogleIcon,
-	IconEye,
-	IconRemove,
-	IconSuccess,
-} from "../assets/Icons";
+import { AppleIcon, FacebookIcon, GoogleIcon, IconEye, IconRemove } from "../assets/Icons";
 import { visualStroke } from "../utils";
 import Checkbox from "../components/Checkbox";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router";
 
 export default function Login() {
 	const {
@@ -18,13 +14,34 @@ export default function Login() {
 		reset,
 		handleSubmit,
 		watch,
+		setError,
 		formState: { errors, isSubmitting },
 	} = useForm();
+
+	const navigate = useNavigate();
 
 	const { input, isShowPassword, handleFocus, handleBlur, handleShowPassword } = useFormUtils();
 
 	const onSubmit = async (data) => {
-		console.log(data);
+		const { email, password } = data;
+		console.log("Trying login with:", email, password);
+		try {
+			const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+			if (!userCredential || !userCredential.user) {
+				setError("root", { type: "firebase", message: "Login failed. Please try again." });
+				return;
+			}
+			reset();
+			navigate("/dashboard");
+		} catch (error) {
+			const errorCode = error.code;
+
+			if (errorCode === "auth/invalid-credential") {
+				setError("root", { type: "firebase", message: "Invalid email or password" });
+			}
+			console.error("Firebase login error:", error);
+		}
 	};
 
 	const watchedEmail = watch("email");
@@ -48,6 +65,11 @@ export default function Login() {
 					<AppleIcon /> <FacebookIcon /> <GoogleIcon />
 				</div>
 				<div>
+					{errors.root && (
+						<p className="text-red-600 bg-red-100 border border-red-300 px-4 py-2 rounded-md mb-4">
+							{errors.root.message}
+						</p>
+					)}
 					<p className="text-gray-three text-[13px] mb-[20px]">or register with email</p>
 					<form onSubmit={handleSubmit(onSubmit)} className="w-full">
 						{/* Email Address */}

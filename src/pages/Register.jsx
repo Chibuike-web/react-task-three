@@ -11,6 +11,9 @@ import {
 import { useFormUtils } from "../Hooks";
 import Checkbox from "../components/Checkbox";
 import { visualStroke } from "../utils";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import { useNavigate } from "react-router";
 
 export default function Register() {
 	const {
@@ -18,13 +21,38 @@ export default function Register() {
 		reset,
 		handleSubmit,
 		watch,
+		setError,
 		formState: { errors, isSubmitting },
 	} = useForm();
 
+	const navigate = useNavigate();
 	const { input, isShowPassword, handleFocus, handleBlur, handleShowPassword } = useFormUtils();
 
 	const onSubmit = async (data) => {
-		console.log(data);
+		const { email, password } = data;
+
+		try {
+			const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+			if (!userCredential || !userCredential.user) {
+				setError("root", { type: "firebase", message: "Something went wrong. Please try again." });
+				return;
+			}
+			reset();
+			navigate("/personal-info");
+		} catch (error) {
+			const errorCode = error.code;
+
+			if (errorCode === "auth/email-already-in-use") {
+				setError("email", { type: "firebase", message: "Email is already in use" });
+			} else if (errorCode === "auth/invalid-email") {
+				setError("email", { type: "firebase", message: "Invalid email address" });
+			} else {
+				setError("root", { type: "firebase", message: "Something went wrong. Please try again." });
+			}
+
+			console.error("Firebase signup error:", error);
+		}
 	};
 
 	const watchedEmail = watch("email");
@@ -64,6 +92,11 @@ export default function Register() {
 				</div>
 				<div>
 					<p className="text-gray-three text-[13px] mb-[20px]">or register with email</p>
+					{errors.root && (
+						<p className="text-red-600 bg-red-100 border border-red-300 px-4 py-2 rounded-md mb-4">
+							{errors.root.message}
+						</p>
+					)}
 					<form onSubmit={handleSubmit(onSubmit)} className="w-full">
 						{/* Email Address */}
 						<div>
@@ -96,7 +129,7 @@ export default function Register() {
 										onBlur={handleBlur}
 									/>
 								</fieldset>
-								{watchedEmail && watchedEmail?.match(/^\S+@\S+$/i) && (
+								{!errors.email && watchedEmail && watchedEmail?.match(/^\S+@\S+$/i) && (
 									<IconSuccess className="text-status-success" />
 								)}
 							</div>
