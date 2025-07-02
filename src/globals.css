@@ -41,3 +41,11 @@
 body {
 	font-family: var(--font-type);
 }
+
+input {
+	font-family: var(--font-type);
+}
+
+button {
+	font-family: var(--font-type);
+}
