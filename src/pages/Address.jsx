@@ -11,6 +11,7 @@ import {
 import { useFormUtils } from "../Hooks";
 import { useForm } from "react-hook-form";
 import { visualStroke } from "../utils";
+import { useNavigate } from "react-router";
 
 export default function Address() {
 	const [selection, setSelection] = useState("");
@@ -105,10 +106,13 @@ const AddManually = () => {
 		formState: { errors, isSubmitting },
 	} = useForm();
 
+	const navigate = useNavigate();
+
 	const { input, handleFocus, handleBlur } = useFormUtils();
 
 	const onSubmit = (data) => {
-		console.log(data);
+		reset();
+		navigate("/success");
 	};
 
 	const watchedStreetAddress = watch("streetAddress");

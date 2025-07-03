@@ -4,10 +4,12 @@ import { useFormUtils } from "../Hooks";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { visualStroke } from "../utils";
+import { useNavigate } from "react-router";
 
 export default function PersonalInfo() {
-	const { input, handleFocus, handleBlur, setInput } = useFormUtils();
+	const { input, handleFocus, handleBlur } = useFormUtils();
 	const [isOpen, setIsOpen] = useState(false);
+	const navigate = useNavigate();
 	const {
 		register,
 		setValue,
@@ -22,7 +24,8 @@ export default function PersonalInfo() {
 	});
 
 	const onSubmit = (data) => {
-		console.log("Submitted data:", data);
+		reset();
+		navigate("/address");
 	};
 
 	const watchedName = watch("name");
