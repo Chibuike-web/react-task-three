@@ -230,7 +230,7 @@ export default function PersonalInfo() {
 					</p>
 					<button
 						type="submit"
-						className="font-bold text-white bg-primary rounded-[12px] w-full h-[56px]"
+						className="font-bold font-primary text-white bg-primary rounded-[12px] w-full h-[56px]"
 					>
 						Save Information
 					</button>

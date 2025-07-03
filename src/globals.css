@@ -4,7 +4,8 @@
 :root {
 	/* Typography */
 
-	--font-type: Commissioner;
+	--font-primary: "Commissioner", san-serif;
+	--font-secondary: "Poppins", san-serif;
 
 	/* Colours */
 
@@ -18,6 +19,7 @@
 	--color-status-success: hsl(96, 63%, 48%);
 	--color-status-error: hsl(0, 97%, 61%);
 	--color-status-info: hsl(213, 100%, 56%);
+	--color-dashboard: hsl(229, 18%, 64%);
 
 	/* Shadow */
 
@@ -27,7 +29,8 @@
 @theme {
 	/* Typography */
 
-	--font-family: var(--font-type);
+	--font-primary: var(--font-primary);
+	--font-secondary: var(--font-secondary);
 
 	/* Colours */
 
@@ -41,19 +44,20 @@
 	--color-status-success: var(--color-status-success);
 	--color-status-error: var(--color-status-error);
 	--color-status-info: var(--color-status-info);
+	--color-dashboard: var(--color-dashboard);
 
 	/* Shadow */
 	--shadow-md: var(--shadow-md);
 }
 
 body {
-	font-family: var(--font-type);
+	font-family: var(--font-primary);
 }
 
 input {
-	font-family: var(--font-type);
+	font-family: var(--font-primary);
 }
 
-button {
-	font-family: var(--font-type);
-}
+/* button {
+	font-family: var(--font-primary);
+} */

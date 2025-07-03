@@ -4,11 +4,13 @@ import Topbar from "../../components/Topbar";
 
 export default function Dashboard() {
 	return (
-		<div>
+		<div className="font-secondary flex bg-[#FAFBFF]">
 			<Sidebar />
-			<aside>
+			<aside className="h-screen w-screen">
 				<Topbar />
-				<Outlet />
+				<section className="w-full pl-[306px] mt-[117px]">
+					<Outlet />
+				</section>
 			</aside>
 		</div>
 	);

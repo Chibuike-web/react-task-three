@@ -185,7 +185,7 @@ export default function Register() {
 						<div className="mt-8">
 							<button
 								type="submit"
-								className="font-bold text-white bg-primary rounded-[12px] w-full h-[56px]"
+								className="font-bold font-primary text-white bg-primary rounded-[12px] w-full h-[56px]"
 							>
 								Create account
 							</button>
