@@ -1,6 +1,8 @@
 import {
 	ActiveNow,
 	DecreaseIcon,
+	IconDropdown,
+	IconSearch,
 	IncreaseIcon,
 	Members,
 	TotalCustomerIcon,
@@ -11,17 +13,138 @@ import activeNowThree from "../../assets/active-now-three.png";
 import activeNowFour from "../../assets/active-now-four.png";
 import activeNowFive from "../../assets/active-now-five.png";
 import { Fragment } from "react";
+import { useFormUtils } from "../../Hooks";
 
 export default function Index() {
+	const { input, handleFocus, handleBlur } = useFormUtils();
+
 	return (
-		<div className="w-full max-w-[1200px] mx-auto px-[32px] lg:px-[88px] xl:px-0">
-			<div className="flex gap-14 w-full bg-white px-14 py-10 items-center justify-between rounded-[30px] shadow-md">
-				{dashCardInfo.map(({ id, ...item }, index) => (
-					<Fragment key={id}>
-						<DashCard {...item} />
-						{index < 2 && <span className="block bg-[#f0f0f0] h-[87px] w-[1px]" />}
-					</Fragment>
-				))}
+		<div className="w-full overflow-x-auto px-8 xl:px-[88px] pb-10">
+			<div className="min-w-[1280px] max-w-[1280px] mx-auto">
+				<div className="flex gap-14 w-full bg-white px-14 py-10 items-center justify-between rounded-[30px] shadow-md">
+					{dashCardInfo.map(({ id, ...item }, index) => (
+						<Fragment key={id}>
+							<DashCard {...item} />
+							{index < 2 && <span className="block bg-[#f0f0f0] h-[87px] w-[1px]" />}
+						</Fragment>
+					))}
+				</div>
+
+				<div className="bg-white py-[30px] rounded-[30px] shadow-md mt-10">
+					{/* top */}
+					<div className="flex items-center justify-between w-full px-[38px]">
+						<div>
+							<h2 className="text-[22px] font-semibold">All Customers</h2>
+							<p className="text-[#16C098] text-[14px]">Active Members</p>
+						</div>
+						<div className="flex">
+							<div
+								className={`h-10 bg-[#F9FBFF] rounded-[12px] w-full max-w-[216px] flex items-center gap-2 px-4 ${
+									input === "search" ? "border-2 border-primary" : ""
+								}`}
+							>
+								<IconSearch />
+								<input
+									type="search"
+									name="search"
+									id="search"
+									placeholder="Search"
+									className="focus:border-0 focus:outline-0 text-[15px] h-full text-gray-one placeholder:text-[15px] placeholder:text-gray-two w-full"
+									onFocus={(e) => handleFocus(e.target.id)}
+									onBlur={handleBlur}
+								/>
+							</div>
+							<div className="bg-[#F9FBFF] py-[10px] pl-[15] pr-[10px] rounded-[10px] flex items-center gap-[7px]">
+								<span>Sort by: Newest</span>
+								<IconDropdown />
+							</div>
+						</div>
+					</div>
+
+					{/* heading */}
+					<div className="grid grid-cols-6 gap-4 pb-[14px] pt-10 px-[38px] text-[#B5B7C0] font-medium text-sm border-b border-[#EEEEEE]">
+						{columns.map((column, index) => (
+							<div key={index}>{column}</div>
+						))}
+					</div>
+					{/* table */}
+					<div className="px-[38px] font-medium">
+						{tableRowInfo.map((row) => (
+							<div
+								key={row.id}
+								className={`grid grid-cols-6 gap-4 py-[20px] text-sm border-b border-[#EEEEEE]
+						}`}
+							>
+								<div>{row.name}</div>
+								<div>{row.company}</div>
+								<div>{row.phoneNumber}</div>
+								<div>{row.email}</div>
+								<div>{row.country}</div>
+								<div>
+									<span
+										className={`px-2 py-1 rounded-[4px] text-xs font-medium ${
+											row.status.toLowerCase() === "active"
+												? "bg-[#16C098]/38 text-[#00B087] border border-[#00B087]"
+												: "bg-[#FFC5C5] text-[#DF0404] border border-[#DF0404]"
+										}`}
+									>
+										{row.status}
+									</span>
+								</div>
+							</div>
+						))}
+					</div>
+
+					{/* pagination */}
+
+					<div className="px-[38px] pt-[30px] flex w-full justify-between">
+						<p className="font-medium text-[14px] text-[#B5B7C0]">
+							Showing data 1 to 8 of 256K entries
+						</p>
+						<div className="flex items-center gap-[12px] text-[12px] font-medium text-[#404B52]">
+							<button
+								type="button"
+								className="size-6 border border-[#EEEEEE] rounded-[4px] bg-[#f5f5f5]"
+							>
+								&lt;
+							</button>
+							<button type="button" className="size-6 text-white rounded-[4px] bg-primary">
+								1
+							</button>
+							<button
+								type="button"
+								className="size-6 border border-[#EEEEEE] rounded-[4px] bg-[#f5f5f5]"
+							>
+								2
+							</button>
+							<button
+								type="button"
+								className="size-6 border border-[#EEEEEE] rounded-[4px] bg-[#f5f5f5]"
+							>
+								3
+							</button>
+							<button
+								type="button"
+								className="size-6 border border-[#EEEEEE] rounded-[4px] bg-[#f5f5f5]"
+							>
+								4
+							</button>
+							<p>...</p>
+							<button
+								type="button"
+								className="size-6 border border-[#EEEEEE] rounded-[4px] bg-[#f5f5f5]"
+							>
+								40
+							</button>
+							<button
+								type="button"
+								className="size-6 border border-[#EEEEEE] rounded-[4px] bg-[#f5f5f5]"
+							>
+								&gt;
+							</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -99,3 +222,80 @@ const DashCard = ({ text, number, trend, icon }) => {
 		</div>
 	);
 };
+
+const tableRowInfo = [
+	{
+		id: 1,
+		name: "Jane Cooper",
+		company: "Microsoft",
+		phoneNumber: "(225) 555-0118",
+		email: "jane@microsoft.com",
+		country: "United States",
+		status: "Active",
+	},
+	{
+		id: 2,
+		name: "Floyd Miles",
+		company: "Microsoft",
+		phoneNumber: "(205) 555-0100",
+		email: "floyd@yahoo.com",
+		country: "Kiribati",
+		status: "Inactive",
+	},
+	{
+		id: 3,
+		name: "Ronald Richards",
+		company: "Adobe",
+		phoneNumber: "(302) 555-0107",
+		email: "ronald@adobe.com",
+		country: "Israel",
+		status: "Inactive",
+	},
+	{
+		id: 4,
+		name: "Marvin McKinney",
+		company: "Tesla",
+		phoneNumber: "(252) 555-0126",
+		email: "marvin@tesla.com",
+		country: "Iran",
+		status: "Active",
+	},
+	{
+		id: 5,
+		name: "Jerome Bell",
+		company: "Google",
+		phoneNumber: "(629) 555-0129",
+		email: "jerome@google.com",
+		country: "Réunion",
+		status: "Active",
+	},
+	{
+		id: 6,
+		name: "Kathryn Murphy",
+		company: "Microsoft",
+		phoneNumber: "(225) 555-0118",
+		email: "jane@microsoft.com",
+		country: "United States",
+		status: "Active",
+	},
+	{
+		id: 7,
+		name: "Jacob Jones",
+		company: "Yahoo",
+		phoneNumber: "(208) 555-0112",
+		email: "jacob@yahoo.com",
+		country: "Brazil",
+		status: "Active",
+	},
+	{
+		id: 8,
+		name: "Kristin Watson",
+		company: "Facebook",
+		phoneNumber: "(704) 555-0127",
+		email: "kristin@facebook.com",
+		country: "Åland Islands",
+		status: "Inactive",
+	},
+];
+
+const columns = ["Customer Name", "Company", "Phone Number", "Email", "Country", "Status"];

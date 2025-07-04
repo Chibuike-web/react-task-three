@@ -14,13 +14,16 @@ import {
 
 export default function Sidebar() {
 	return (
-		<aside className="bg-white fixed left-0 top-0 flex flex-col h-full items-center justify-between gap-16 bottom-0 w-[306px] overflow-auto px-[28px] py-[36px]">
+		<aside className="bg-white fixed left-0 top-0 flex flex-col h-full items-center justify-between gap-16 bottom-0 w-[102px] xl:w-[306px] overflow-auto px-[28px] py-[36px]">
 			<div className="w-full">
 				<div className="flex items-end gap-[4px]">
 					<div className="flex gap-[8px]">
-						<LogoIcon /> <span className="font-semibold text-black text-[26px]">Dashboard</span>
+						<LogoIcon />{" "}
+						<span className="font-semibold text-black text-[26px] hidden xl:block">Dashboard</span>
 					</div>
-					<span className="font-medium text-[10px] text-[#838383] mb-[10px]">v.01</span>
+					<span className="font-medium text-[10px] text-[#838383] mb-[10px] hidden xl:block">
+						v.01
+					</span>
 				</div>
 
 				<div className="flex flex-col gap-[16px] mt-10">
@@ -37,9 +40,9 @@ export default function Sidebar() {
 						>
 							<div className="flex items-center gap-[14px]">
 								<span>{icon}</span>
-								{title}
+								<span className="hidden xl:block">{title}</span>
 							</div>
-							<span>
+							<span className="hidden xl:block">
 								<ArrowRight />
 							</span>
 						</NavLink>
@@ -47,9 +50,9 @@ export default function Sidebar() {
 				</div>
 			</div>
 
-			<div className="w-full">
+			<div className="w-full ">
 				<div
-					className="flex items-center flex-col rounded-[20px] p-6"
+					className="flex items-center flex-col rounded-[20px] p-6 hidden xl:block"
 					style={{
 						background: "linear-gradient(45deg, #EAABF0, #4623E9)",
 					}}
@@ -63,14 +66,14 @@ export default function Sidebar() {
 					</button>
 				</div>
 				<div className="w-full flex items-center justify-between mt-12">
-					<div className="flex items-center gap-[12px]">
+					<div className="flex items-center gap-[12px] ">
 						<img src={profileImage} alt="" className="max-w-[42px] w-full" />
-						<div className="flex flex-col">
+						<div className="hidden xl:flex flex-col ">
 							<p className="text-[14px] font-medium">Evano</p>
 							<p className="text-[12px] text-[#757575]">Project Manager</p>
 						</div>
 					</div>
-					<IconDropdown />
+					<IconDropdown className="hidden xl:block" />
 				</div>
 			</div>
 		</aside>

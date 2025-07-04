@@ -6,9 +6,9 @@ export default function Dashboard() {
 	return (
 		<div className="font-secondary flex bg-[#FAFBFF]">
 			<Sidebar />
-			<aside className="h-screen w-screen">
+			<aside className="h-screen w-full">
 				<Topbar />
-				<section className="w-full pl-[306px] mt-[117px]">
+				<section className="w-full pl-[102px] xl:pl-[306px] mt-[117px]">
 					<Outlet />
 				</section>
 			</aside>
