@@ -19,12 +19,12 @@ export default function Index() {
 	const { input, handleFocus, handleBlur } = useFormUtils();
 
 	return (
-		<div className="w-full mx-auto max-w-[1456px] px-8 xl:px-[88px] pb-10">
-			<div className="flex gap-14 w-full bg-white px-14 py-10 items-center justify-between rounded-[30px] shadow-md overflow-x-auto">
+		<div className="w-full mx-auto max-w-[1456px] px-4 xl:px-[88px] pb-10">
+			<div className="flex gap-6 xl:gap-14 w-full bg-white px-6 xl:px-14 py-5 xl:py-10 items-center justify-between rounded-[30px] shadow-md overflow-x-auto">
 				{dashCardInfo.map(({ id, ...item }, index) => (
 					<Fragment key={id}>
 						<DashCard {...item} />
-						{index < 2 && <span className="block bg-[#f0f0f0] h-[87px] w-[1px]" />}
+						{index < 2 && <span className="flex flex-shrink-0 bg-[#f0f0f0] h-[87px] w-[1px]" />}
 					</Fragment>
 				))}
 			</div>

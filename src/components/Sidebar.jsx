@@ -14,7 +14,7 @@ import {
 
 export default function Sidebar() {
 	return (
-		<aside className="bg-white fixed left-0 top-0 flex flex-col h-full items-center justify-between gap-16 bottom-0 w-[102px] xl:w-[306px] overflow-auto px-[28px] py-[36px]">
+		<aside className="bg-white fixed left-0 top-0 flex flex-col h-full items-center justify-between gap-16 bottom-0 w-[80px] xl:w-[306px] overflow-auto px-[16px] xl:px-[28px] py-[36px]">
 			<div className="w-full">
 				<div className="flex items-end gap-[4px]">
 					<div className="flex gap-[8px]">
