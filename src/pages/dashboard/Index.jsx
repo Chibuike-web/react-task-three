@@ -20,7 +20,7 @@ export default function Index() {
 
 	return (
 		<div className="w-full mx-auto max-w-[1456px] px-8 xl:px-[88px] pb-10">
-			<div className="flex gap-14 w-full bg-white px-14 py-10 items-center justify-between rounded-[30px] shadow-md">
+			<div className="flex gap-14 w-full bg-white px-14 py-10 items-center justify-between rounded-[30px] shadow-md overflow-x-auto">
 				{dashCardInfo.map(({ id, ...item }, index) => (
 					<Fragment key={id}>
 						<DashCard {...item} />
