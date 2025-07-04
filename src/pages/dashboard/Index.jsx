@@ -342,7 +342,7 @@ const MobileTable = () => {
 			))}
 			{/* pagination */}
 
-			<div className="pt-[30px] flex w-full justify-between">
+			<div className="pt-[30px] flex flex-col gap-4 w-full justify-between">
 				<p className="font-medium text-[14px] text-[#B5B7C0]">
 					Showing data 1 to 8 of 256K entries
 				</p>
