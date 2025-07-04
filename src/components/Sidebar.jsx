@@ -14,14 +14,16 @@ import {
 
 export default function Sidebar() {
 	return (
-		<aside className="bg-white fixed left-0 top-0 flex flex-col h-full items-center justify-between gap-16 bottom-0 w-[80px] xl:w-[306px] overflow-auto px-[16px] xl:px-[28px] py-[36px]">
+		<aside className="bg-white hidden sm:flex flex-col items-center  min-h-full w-[102px] xl:min-w-[306px] top-0 max-w-[306px] overflow-y-auto px-5 xl:px-[28px] py-[36px]">
 			<div className="w-full">
 				<div className="flex items-end gap-[4px]">
 					<div className="flex gap-[8px]">
 						<LogoIcon />{" "}
-						<span className="font-semibold text-black text-[26px] hidden xl:block">Dashboard</span>
+						<span className="font-semibold text-black text-[26px] sm:hidden xl:block">
+							Dashboard
+						</span>
 					</div>
-					<span className="font-medium text-[10px] text-[#838383] mb-[10px] hidden xl:block">
+					<span className="font-medium text-[10px] text-[#838383] mb-[10px] sm:hidden xl:block">
 						v.01
 					</span>
 				</div>
@@ -50,9 +52,9 @@ export default function Sidebar() {
 				</div>
 			</div>
 
-			<div className="w-full ">
+			<div className="w-full mt-auto ">
 				<div
-					className="flex items-center flex-col rounded-[20px] p-6 hidden xl:block"
+					className="items-center flex-col rounded-[20px] p-6 hidden xl:flex"
 					style={{
 						background: "linear-gradient(45deg, #EAABF0, #4623E9)",
 					}}
@@ -61,26 +63,28 @@ export default function Sidebar() {
 					<p className="text-white font-semibold text-center">
 						Upgrade to PRO to get access all Features!
 					</p>
-					<button className="font-secondary text-primary font-semibold bg-white w-[203px] h-[40px] rounded-full mt-[20px]">
+					<button className="font-secondary text-primary font-semibold bg-white  w-full h-[40px] rounded-full mt-[20px]">
 						Get Pro Now!
 					</button>
 				</div>
 				<div className="w-full flex items-center justify-between mt-12">
 					<div className="flex items-center gap-[12px] ">
 						<img src={profileImage} alt="" className="max-w-[42px] w-full" />
-						<div className="hidden xl:flex flex-col ">
+						<div className="flex-col hidden xl:flex ">
 							<p className="text-[14px] font-medium">Evano</p>
 							<p className="text-[12px] text-[#757575]">Project Manager</p>
 						</div>
 					</div>
-					<IconDropdown className="hidden xl:block" />
+					<span className="hidden xl:block">
+						{" "}
+						<IconDropdown />
+					</span>
 				</div>
 			</div>
 		</aside>
 	);
 }
-
-const menuList = [
+export const menuList = [
 	{
 		title: "Dashboard",
 		icon: <DashboardIcon />,
