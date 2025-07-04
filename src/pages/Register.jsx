@@ -185,9 +185,17 @@ export default function Register() {
 						<div className="mt-8">
 							<button
 								type="submit"
-								className="font-bold font-primary text-white bg-primary rounded-[12px] w-full h-[56px]"
+								disabled={isSubmitting}
+								className="font-bold font-primary text-white bg-primary rounded-[12px] w-full h-[56px] disabled:opacity-50"
 							>
-								Create account
+								{isSubmitting ? (
+									<span className="flex gap-2 items-center justify-center">
+										<div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+										Creating account...
+									</span>
+								) : (
+									"Create account"
+								)}
 							</button>
 							<Checkbox
 								register={register}

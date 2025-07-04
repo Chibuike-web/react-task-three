@@ -61,7 +61,7 @@ const ChooseAddress = ({ handleSelection }) => {
 					Your address is not visible to other users
 				</p>
 
-				<div className="flex items-center gap-[8px] text-primary font-bold mt-8">
+				<div className="flex flex-col sm:flex-row items-start sm:items-center gap-[8px] text-primary font-bold mt-8">
 					<button
 						id="useCurrentLocation"
 						className="flex items-center h-8 px-[12px] gap-2 rounded-[12px] border border-[#EF498F]/28"

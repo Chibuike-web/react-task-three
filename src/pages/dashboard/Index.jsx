@@ -19,18 +19,18 @@ export default function Index() {
 	const { input, handleFocus, handleBlur } = useFormUtils();
 
 	return (
-		<div className="w-full overflow-x-auto px-8 xl:px-[88px] pb-10">
-			<div className="min-w-[1280px] max-w-[1280px] mx-auto">
-				<div className="flex gap-14 w-full bg-white px-14 py-10 items-center justify-between rounded-[30px] shadow-md">
-					{dashCardInfo.map(({ id, ...item }, index) => (
-						<Fragment key={id}>
-							<DashCard {...item} />
-							{index < 2 && <span className="block bg-[#f0f0f0] h-[87px] w-[1px]" />}
-						</Fragment>
-					))}
-				</div>
+		<div className="w-full mx-auto max-w-[1456px] px-8 xl:px-[88px] pb-10">
+			<div className="flex gap-14 w-full bg-white px-14 py-10 items-center justify-between rounded-[30px] shadow-md">
+				{dashCardInfo.map(({ id, ...item }, index) => (
+					<Fragment key={id}>
+						<DashCard {...item} />
+						{index < 2 && <span className="block bg-[#f0f0f0] h-[87px] w-[1px]" />}
+					</Fragment>
+				))}
+			</div>
 
-				<div className="bg-white py-[30px] rounded-[30px] shadow-md mt-10">
+			<div className="w-full overflow-x-auto">
+				<div className="min-w-[1280px] bg-white py-[30px] rounded-[30px] shadow-md mt-10">
 					{/* top */}
 					<div className="flex items-center justify-between w-full px-[38px]">
 						<div>
@@ -210,7 +210,7 @@ const DashCard = ({ text, number, trend, icon }) => {
 	}
 
 	return (
-		<div className="flex items-center gap-[20px]">
+		<div className="flex items-center gap-[20px] min-w-[270px]">
 			<span className="bg-[#D3FFE7] size-[84px] rounded-full text-[#00AC4F] flex items-center justify-center">
 				{icon}
 			</span>

@@ -146,9 +146,17 @@ export default function Login() {
 						</div>
 						<button
 							type="submit"
-							className="font-bold font-primary text-white bg-primary rounded-[12px] w-full h-[56px] mt-8"
+							disabled={isSubmitting}
+							className="font-bold font-primary text-white bg-primary rounded-[12px] w-full h-[56px] mt-8 disabled:opacity-50"
 						>
-							Login to Dashboard
+							{isSubmitting ? (
+								<span className="flex gap-2 items-center justify-center">
+									<div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+									Login...
+								</span>
+							) : (
+								"Login to Dashboard"
+							)}
 						</button>
 						<Checkbox register={register} text="Remember me" watchedCheckbox={watchedCheckbox} />
 					</form>
